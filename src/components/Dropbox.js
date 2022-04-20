@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-// import './App.css';
+import './Dropbox.css';
 
 const ticketItems = [
   {
@@ -25,15 +25,27 @@ const ticketItems = [
   }
 ]
 
-function Dropbox() {
+const Dropbox = () => {
+  const [characters, updateCharacters] = useState(ticketItems);
+
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
+
+    const items = Array.from(characters);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    updateCharacters(items);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <DragDropContext>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="ticket-items">
             {(provided) => (
               <ul className="ticket-items" {...provided.droppableProps} ref={provided.innerRef}>
-                {ticketItems.map(({ id, name }, index) => {
+                {characters.map(({ id, name }, index) => {
                   return (
                     <Draggable key={id} draggableId={id} index={index}>
                       {(provided) => (
