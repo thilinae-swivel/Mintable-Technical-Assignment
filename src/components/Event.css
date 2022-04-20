@@ -1,0 +1,33 @@
+.event-pane {
+  display: flex;
+  flex-direction: column;
+  height: 800px;
+  margin: 35px;
+  box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.33);
+  border-radius: 8px;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.sub-title {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.drag-area {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  height: 600px;
+}
+
+.draw-area {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
